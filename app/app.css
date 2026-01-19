@@ -26,17 +26,19 @@ body {
 main {
   @apply min-h-screen pt-10;
 }
+
 h1 {
-  @apply max-sm:text-[3rem] text-6xl  text-gradient leading-tight xl:tracking-[-2px] font-semibold;
+  @apply max-sm:text-[2.5rem] text-5xl text-gradient leading-tight xl:tracking-[-2px] font-semibold;
 }
 
 h2 {
-  @apply max-sm:text-xl text-3xl text-dark-200;
+  @apply max-sm:text-lg text-2xl text-dark-200;
 }
 
 label {
   @apply text-dark-200;
 }
+
 input {
   @apply w-full p-4 inset-shadow rounded-2xl focus:outline-none bg-white;
 }
@@ -71,25 +73,31 @@ form {
   .back-button {
     @apply flex flex-row items-center gap-2 border border-gray-200 rounded-lg p-2 shadow-sm;
   }
+
+  /* FIXED: Removed 600px width, added max-width for better scaling */
   .auth-button {
-    @apply primary-gradient rounded-full py-4 px-8 cursor-pointer w-[600px] max-md:w-full text-3xl font-semibold text-white;
+    @apply primary-gradient rounded-full py-4 px-8 cursor-pointer max-w-[450px] w-full text-2xl font-semibold text-white transition-transform active:scale-95;
   }
+
   .main-section {
     @apply flex flex-col items-center gap-8 pt-12 max-sm:mx-2 mx-15 pb-5;
   }
   .page-heading {
-    @apply flex flex-col items-center gap-8 max-w-4xl text-center max-sm:gap-4;
-  }
-  .resumes-section {
-    @apply flex flex-wrap max-md:flex-col max-md:gap-4 gap-6 items-start max-md:items-center w-full max-w-[1850px] justify-evenly;
+    @apply flex flex-col items-center gap-6 max-w-4xl text-center max-sm:gap-4;
   }
 
+  /* FIXED: Switched to Grid for easier row/column management */
+  .resumes-section {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full max-w-[1400px] mx-auto px-4;
+  }
+
+  /* FIXED: Removed fixed width/height. Use w-full so grid controls the size */
   .resume-card {
-    @apply flex flex-col gap-8 h-[560px] w-[350px] lg:w-[430px] xl:w-[490px] bg-white rounded-2xl p-4;
+    @apply flex flex-col gap-6 w-full bg-white rounded-2xl p-5 border border-gray-100 shadow-sm transition-shadow hover:shadow-md;
   }
 
   .resume-card-header {
-    @apply flex flex-row gap-2 justify-between min-h-[110px] max-sm:flex-col items-center max-md:justify-center max-md:items-center;
+    @apply flex flex-row gap-2 justify-between min-h-[80px] items-center;
   }
 
   .feedback-section {
