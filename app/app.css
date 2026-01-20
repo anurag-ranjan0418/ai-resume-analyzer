@@ -4,7 +4,7 @@
 
 @theme {
   --font-sans: "Mona Sans", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --color-dark-200: #475467;
   --color-light-blue-100: #c1d3f81a;
   --color-light-blue-200: #a7bff14d;
@@ -26,19 +26,17 @@ body {
 main {
   @apply min-h-screen pt-10;
 }
-
 h1 {
-  @apply max-sm:text-[2.5rem] text-5xl text-gradient leading-tight xl:tracking-[-2px] font-semibold;
+  @apply text-6xl  text-gradient leading-tight tracking-[-2px] font-semibold;
 }
 
 h2 {
-  @apply max-sm:text-lg text-2xl text-dark-200;
+  @apply text-3xl text-dark-200;
 }
 
 label {
   @apply text-dark-200;
 }
-
 input {
   @apply w-full p-4 inset-shadow rounded-2xl focus:outline-none bg-white;
 }
@@ -73,31 +71,25 @@ form {
   .back-button {
     @apply flex flex-row items-center gap-2 border border-gray-200 rounded-lg p-2 shadow-sm;
   }
-
-  /* FIXED: Removed 600px width, added max-width for better scaling */
   .auth-button {
-    @apply primary-gradient rounded-full py-4 px-8 cursor-pointer max-w-[450px] w-full text-2xl font-semibold text-white transition-transform active:scale-95;
+    @apply primary-gradient rounded-full py-4 px-8 cursor-pointer w-[600px] max-md:w-full text-3xl font-semibold text-white;
   }
-
   .main-section {
-    @apply flex flex-col items-center gap-8 pt-12 max-sm:mx-2 mx-15 pb-5;
+    @apply flex flex-col items-center gap-8 pt-12 mx-15 pb-5;
   }
   .page-heading {
-    @apply flex flex-col items-center gap-6 max-w-4xl text-center max-sm:gap-4;
+    @apply flex flex-col items-center gap-8 max-w-4xl text-center;
   }
-
-  /* FIXED: Switched to Grid for easier row/column management */
   .resumes-section {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full max-w-[1400px] mx-auto px-4;
+    @apply flex flex-wrap max-lg:flex-col gap-6 items-start  w-full max-w-[1850px] justify-evenly;
   }
 
-  /* FIXED: Removed fixed width/height. Use w-full so grid controls the size */
   .resume-card {
-    @apply flex flex-col gap-6 w-full bg-white rounded-2xl p-5 border border-gray-100 shadow-sm transition-shadow hover:shadow-md;
+    @apply flex flex-col gap-8 h-[560px] w-full lg:w-[450px] xl:w-[490px] bg-white rounded-2xl p-4;
   }
 
   .resume-card-header {
-    @apply flex flex-row gap-2 justify-between min-h-[80px] items-center;
+    @apply flex flex-row gap-2 justify-between min-h-[110px] max-sm:flex-col items-center max-md:justify-center max-md:items-center;
   }
 
   .feedback-section {

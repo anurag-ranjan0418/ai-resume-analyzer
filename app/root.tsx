@@ -9,8 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import { useEffect } from "react";
-import { usePuterStore } from "./lib/puter";
+import {usePuterStore} from "~/lib/puter";
+import {useEffect} from "react";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -29,8 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { init } = usePuterStore();
 
   useEffect(() => {
-    // This starts the connection to Puter.com as soon as the app loads
-    init();
+    init()
   }, [init]);
 
   return (
@@ -40,13 +39,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {/* CRITICAL: We moved the Puter script to the <head>. 
-          This ensures the library is ready before your React components 
-          try to check if the user is logged in.
-        */}
-        <script src="https://js.puter.com/v2"></script>
       </head>
       <body>
+        <script src="https://js.puter.com/v2/"></script>
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -77,15 +72,13 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <main className="pt-16 p-4 container mx-auto">
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-        <h1 className="text-2xl font-bold text-red-800">{message}</h1>
-        <p className="text-red-600 mt-2">{details}</p>
-        {stack && (
-          <pre className="mt-4 w-full p-4 bg-gray-900 text-gray-100 rounded overflow-x-auto text-sm">
-            <code>{stack}</code>
-          </pre>
-        )}
-      </div>
+      <h1>{message}</h1>
+      <p>{details}</p>
+      {stack && (
+        <pre className="w-full p-4 overflow-x-auto">
+          <code>{stack}</code>
+        </pre>
+      )}
     </main>
   );
 }
