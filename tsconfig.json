@@ -1,3 +1,9 @@
+/**
+ * @file tsconfig.json
+ * @description Master TypeScript configuration for ApexResume.
+ * Configured for Vite-based environments with strict type-checking 
+ * and ESM (EcmaScript Module) compatibility.
+ */
 {
   "include": [
     "**/*",
@@ -6,22 +12,29 @@
     ".react-router/types/**/*"
   ],
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "types": ["node", "vite/client"],
-    "target": "ES2022",
-    "module": "ES2022",
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
+    /* --- ENVIRONMENT & TARGETING --- */
+    "lib": ["DOM", "DOM.Iterable", "ES2022"], // Standard browser and modern JS features
+    "types": ["node", "vite/client"],         // Support for Node.js and Vite environmental variables
+    "target": "ES2022",                       // Output level compatible with modern browsers
+    "jsx": "react-jsx",                       // Automatic JSX transform (React 17+)
+
+    /* --- MODULE RESOLUTION --- */
+    "module": "ES2022",                       // Use standard EcmaScript modules
+    "moduleResolution": "bundler",             // Optimized for modern bundlers like Vite/Esbuild
     "rootDirs": [".", "./.react-router/types"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"]                      // Internal path aliasing for cleaner imports
     },
-    "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true
+
+    /* --- INTEROP & SYNTAX --- */
+    "esModuleInterop": true,                  // Compatibility for CommonJS and ESM interop
+    "verbatimModuleSyntax": true,             // Ensures type-only imports are stripped correctly
+    "resolveJsonModule": true,                // Allow importing .json files directly
+
+    /* --- BUILD CONSTRAINTS --- */
+    "noEmit": true,                           // Type-check only; Vite handles the actual transpilation
+    "skipLibCheck": true,                     // Boosts performance by skipping library type checking
+    "strict": true                            // Maximum type safety (Standard for production apps)
   }
 }

@@ -1,7 +1,43 @@
-.DS_Store
-.env
-/node_modules/
+# @file .gitignore
+# @description Prevents sensitive and machine-specific files from entering version control.
 
-# React Router
+# --- SYSTEM FILES ---
+.DS_Store
+Thumbs.db
+*.local
+
+# --- ENVIRONMENT & SECRETS ---
+# Crucial: Never commit .env files to the repository
+.env
+.env.*
+!.env.example
+
+# --- DEPENDENCIES ---
+/node_modules/
+/jspm_packages/
+
+# --- FRAMEWORK SPECIFIC (React Router / Vite) ---
 /.react-router/
 /build/
+/dist/
+/.cache/
+*.tsbuildinfo
+
+# --- LOGS & DEBUGGING ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# --- IDE & EDITORS ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --- INFRASTRUCTURE ---
+.docker/

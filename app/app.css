@@ -1,152 +1,197 @@
+/**
+ * @file app/app.css
+ * @description Global design system for the ApexResume Neural Engine.
+ * Built with Tailwind CSS v4, utilizing a high-contrast Slate palette and Mona Sans.
+ */
+
 @import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/**
+ * THEME DEFINITIONS
+ * Custom design tokens and variable mappings for Tailwind v4.
+ * Defines the core "Neural" aesthetic: clean, technical, and high-readability.
+ */
 @theme {
   --font-sans: "Mona Sans", ui-sans-serif, system-ui, sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --color-dark-200: #475467;
-  --color-light-blue-100: #c1d3f81a;
-  --color-light-blue-200: #a7bff14d;
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  --color-badge-green: #d5faf1;
-  --color-badge-red: #f9e3e2;
-  --color-badge-yellow: #fceed8;
+  /* Core Palette */
+  --color-dark-200: #1e293b;
+  --color-dark-muted: #64748b;
+  --color-light-blue-100: #f8fafc;
+  --color-light-blue-200: #f1f5f9;
 
-  --color-badge-green-text: #254d4a;
-  --color-badge-red-text: #752522;
-  --color-badge-yellow-text: #73321b;
+  /* State Badges (Semantic Colors) */
+  --color-badge-green: #ecfdf5;
+  --color-badge-red: #fef2f2;
+  --color-badge-yellow: #fffbeb;
+
+  --color-badge-green-text: #065f46;
+  --color-badge-red-text: #991b1b;
+  --color-badge-yellow-text: #92400e;
 }
 
+/**
+ * BASE ELEMENT STYLES
+ * Global resets and typographic foundation.
+ */
 html,
 body {
-  @apply bg-white;
+  @apply bg-white text-slate-950 antialiased;
 }
 
 main {
   @apply min-h-screen pt-10;
 }
+
 h1 {
-  @apply text-6xl  text-gradient leading-tight tracking-[-2px] font-semibold;
+  @apply text-6xl font-bold leading-tight tracking-tight text-slate-900;
 }
 
 h2 {
-  @apply text-3xl text-dark-200;
+  @apply text-3xl font-semibold tracking-tight text-slate-800;
 }
 
 label {
-  @apply text-dark-200;
-}
-input {
-  @apply w-full p-4 inset-shadow rounded-2xl focus:outline-none bg-white;
+  @apply text-sm font-medium uppercase tracking-wider text-slate-600;
 }
 
+input,
 textarea {
-  @apply w-full p-4 inset-shadow rounded-2xl focus:outline-none bg-white;
+  @apply w-full rounded-xl border border-slate-200 bg-slate-50 p-4 outline-none transition-all focus:border-transparent focus:ring-2 focus:ring-slate-900;
 }
 
 form {
-  @apply flex flex-col items-start gap-8 w-full;
+  @apply flex w-full flex-col items-start gap-8;
 }
 
+/**
+ * COMPONENT CLASSES
+ * Reusable UI abstractions using the @apply directive.
+ */
 @layer components {
+  /* Typographic Effects */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5];
+    @apply bg-gradient-to-br from-slate-950 via-slate-800 to-slate-600 bg-clip-text text-transparent;
   }
+
+  /* Layout Containers */
   .gradient-border {
-    @apply bg-gradient-to-b from-light-blue-100 to-light-blue-200 p-4 rounded-2xl;
+    @apply rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm;
   }
+
   .primary-button {
-    @apply primary-gradient text-white rounded-full px-4 py-2 cursor-pointer w-full;
+    @apply w-full cursor-pointer rounded-lg bg-slate-900 px-6 py-3 font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.98];
   }
+
+  /* Resume Analysis Specifics */
   .resume-nav {
-    @apply flex flex-row justify-between items-center p-4 border-b border-gray-200;
+    @apply flex flex-row items-center justify-between border-b border-slate-100 p-6;
   }
+
   .resume-summary {
-    @apply flex flex-row items-center justify-center p-4 gap-4;
+    @apply flex flex-row items-center justify-center gap-6 p-4;
+
     .category {
-      @apply flex flex-row gap-2 items-center bg-gray-50 rounded-2xl p-4 w-full justify-between;
+      @apply flex w-full flex-row items-center justify-between gap-2 rounded-xl border border-slate-100 bg-slate-50 p-4;
     }
   }
+
   .back-button {
-    @apply flex flex-row items-center gap-2 border border-gray-200 rounded-lg p-2 shadow-sm;
+    @apply flex flex-row items-center gap-2 rounded-lg border border-slate-200 p-2 text-slate-600 transition-colors hover:bg-slate-50;
   }
+
   .auth-button {
-    @apply primary-gradient rounded-full py-4 px-8 cursor-pointer w-[600px] max-md:w-full text-3xl font-semibold text-white;
+    @apply w-[600px] cursor-pointer rounded-xl bg-slate-900 px-8 py-4 text-2xl font-semibold text-white shadow-lg transition-all hover:bg-slate-800 max-md:w-full;
   }
+
   .main-section {
-    @apply flex flex-col items-center gap-8 pt-12 mx-15 pb-5;
+    @apply mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 pt-12 pb-10;
   }
+
   .page-heading {
-    @apply flex flex-col items-center gap-8 max-w-4xl text-center;
+    @apply flex max-w-3xl flex-col items-center gap-4 text-center;
   }
+
   .resumes-section {
-    @apply flex flex-wrap max-lg:flex-col gap-6 items-start  w-full max-w-[1850px] justify-evenly;
+    @apply flex w-full flex-wrap items-start justify-center gap-8;
   }
 
   .resume-card {
-    @apply flex flex-col gap-8 h-[560px] w-full lg:w-[450px] xl:w-[490px] bg-white rounded-2xl p-4;
+    @apply flex h-auto min-h-[500px] w-full flex-col gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md lg:w-[450px];
   }
 
   .resume-card-header {
-    @apply flex flex-row gap-2 justify-between min-h-[110px] max-sm:flex-col items-center max-md:justify-center max-md:items-center;
+    @apply flex min-h-[80px] flex-row items-start justify-between gap-4;
   }
 
   .feedback-section {
-    @apply flex flex-col gap-8 w-1/2 px-8 max-lg:w-full py-6;
+    @apply flex w-1/2 flex-col gap-8 rounded-3xl border border-slate-100 bg-slate-50/50 px-8 py-6 max-lg:w-full;
   }
 
   .navbar {
-    @apply flex flex-row justify-between items-center bg-white rounded-full p-4 w-full px-10 max-w-[1200px] mx-auto;
+    @apply mx-auto mt-4 flex max-w-[1200px] flex-row items-center justify-between rounded-full border border-slate-200 bg-white p-3 px-8 shadow-sm;
   }
 
   .score-badge {
-    @apply flex flex-row items-center justify-center py-1 px-2 gap-4 rounded-[96px];
+    @apply flex flex-row items-center justify-center gap-2 rounded-full px-4 py-2 text-lg font-bold;
   }
 
-  .form-div {
-    @apply flex flex-col gap-2 w-full items-start;
-  }
-
+  /* Interaction States */
   .uplader-drag-area {
-    @apply relative p-8 text-center transition-all duration-700 cursor-pointer bg-white rounded-2xl min-h-[208px];
-  }
-  .uploader-selected-file {
-    @apply flex items-center justify-between p-3 bg-gray-50 rounded-2xl;
+    @apply relative min-h-[220px] cursor-pointer rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 p-12 text-center transition-all duration-300 hover:border-slate-400 hover:bg-slate-100;
   }
 }
 
+/**
+ * UTILITIES & ANIMATIONS
+ * Specialized visual effects and motion definitions.
+ */
 @utility bg-gradient {
-  background: linear-gradient(to bottom, #f0f4ff 60%, #fa7185cc);
-}
-
-@utility text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5];
-}
-
-@utility gradient-hover {
-  @apply bg-gradient-to-b from-light-blue-100 to-light-blue-200;
+  background: radial-gradient(circle at top left, #f8fafc, #ffffff);
 }
 
 @utility primary-gradient {
-  background: linear-gradient(to bottom, #8e98ff, #606beb);
-  box-shadow: 0px 74px 21px 0px #6678ef00;
-}
-
-@utility primary-gradient-hover {
-  background: linear-gradient(to bottom, #717dff, #4957eb);
+  background: #0f172a;
 }
 
 @utility inset-shadow {
-  box-shadow: inset 0 0 12px 0 rgba(36, 99, 235, 0.2);
-  backdrop-filter: blur(10px);
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* Keyframes: Cinematic UI Motion */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+/* Animation Utility Classes */
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-opposite { animation-delay: -3s; }
+
+@keyframes loading {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(200%); }
+}
+
+/* Glassmorphism Implementation */
+.backdrop-blur-3xl {
+  backdrop-filter: blur(64px);
+  -webkit-backdrop-filter: blur(64px);
 }
